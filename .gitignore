@@ -1,0 +1,10 @@
+*.dll
+*.so
+*.o
+*.jpg
+*.pdf
+*.swp
+*.rds
+logfiles/
+results/
+figs/

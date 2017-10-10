@@ -1,0 +1,5 @@
+Kmax 35.1
+Ku 1.816e-05
+n 1.08
+halfmax 216.6
+Vhalf -1
