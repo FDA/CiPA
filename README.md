@@ -22,13 +22,19 @@ This code was developed with R version 3.3 and uses the following packages:
 [AP_simulation/](AP_simulation/) contains code to propagate uncertainty in drug effects to action potential (AP) simulations. Results from [hERG_fitting/](hERG_fitting/) and [Hill_fitting/](Hill_fitting/) are used as model inputs ([README.md](AP_simulation/README.md)).
 
 ## Added by Brad Ridder
-All files have been added to /Validation/ for doing hERG_fitting on all 28 drugs (use the hERG_fitting code in the "Training" folder to do this). Hill_fitting contains four different data sets: 
+All files have been added to [/Validation/] for doing hERG_fitting on all 28 drugs (use the hERG_fitting code in the "Training" folder to do this). Hill_fitting contains four different data sets: 
 * manual training
 * manual validation
 * high-throughput training
 * high-throughput validation
 
 Adjust the code in Hill_fitting "IC50_mcmc_jobs.sh" to point at the correct files. An example is given in that code file.
+
+Steps:
+
+* In [Validation/Code/Hill_Fitting], execute (IC50_mcmc_jobs.sh). Make sure there is a [logfiles/] folder in that folder. A [results/] and [figs/] folder will appears with results and figures.
+* In [Validation/Code/AP_simulation], execute (AP_uncertainty_jobs.sh). Adjust AP_uncertainty_jobs.sh to target the results folder you made in the first step.
+* In the [Validation/Code/AP_simulation] folder, use "Rscript combine_results.R -n 2000" to combine results and produce metrics.rds.
 
 ## DISCLAIMER
 This software and documentation were developed by the authors in their capacities as Oak Ridge Institute for Science and Education (ORISE) research fellows at the U.S. Food and Drug Administration (FDA).
