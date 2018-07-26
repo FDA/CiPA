@@ -1,8 +1,8 @@
 # Comprehensive *in vitro* Proarrhythmia Assay (CiPA)<br/> *in silico* model
-R code used to perform uncertainty quantification for the CiPA *in silico* model
+R code used to perform uncertainty quantification for the CiPA *in silico* model and validate the model with the validation data set.
 
 ## Authors
-Kelly Chang, Zhihua Li
+Kelly Chang, Zhihua Li, Bradley J. Ridder
 
 ## Requirements
 This code was developed with R version 3.3 and uses the following packages:
@@ -20,6 +20,9 @@ This code was developed with R version 3.3 and uses the following packages:
 
 ## Uncertainty propagation
 [AP_simulation/](AP_simulation/) contains code to propagate uncertainty in drug effects to action potential (AP) simulations. Results from [hERG_fitting/](hERG_fitting/) and [Hill_fitting/](Hill_fitting/) are used as model inputs ([README.md](AP_simulation/README.md)).
+
+## Added by Brad Ridder
+All files have been added to /Validation/ for doing hERG_fitting on all 28 drugs (use the hERG_fitting code in the "Training" folder to do this). Hill_fitting contains four different data sets: manual training, manual validation, high-throughput trainining, and high-throughput validation. Adjust the code in Hill_fitting "IC50_mcmc_jobs.sh" to point at the correct files. An example is given in that code file.
 
 ## DISCLAIMER
 This software and documentation were developed by the authors in their capacities as Oak Ridge Institute for Science and Education (ORISE) research fellows at the U.S. Food and Drug Administration (FDA).
