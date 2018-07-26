@@ -21,7 +21,7 @@ This code was developed with R version 3.3 and uses the following packages:
 ## Uncertainty propagation
 [AP_simulation/](AP_simulation/) contains code to propagate uncertainty in drug effects to action potential (AP) simulations. Results from [hERG_fitting/](hERG_fitting/) and [Hill_fitting/](Hill_fitting/) are used as model inputs ([README.md](AP_simulation/README.md)).
 
-## Added by Brad Ridder
+## Work Specific to Validation Paper
 All files have been added to [Validation/](Validation/) for doing hERG_fitting on all 28 drugs (use the hERG_fitting code in the "Training" folder to do this). Hill_fitting contains four different data sets: 
 * manual training
 * manual validation
