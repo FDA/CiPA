@@ -18,6 +18,8 @@ This code was developed with R version 3.3 and uses the following packages:
 
 [Hill_fitting/](Hill_fitting/) contains code to perform uncertainty characterization of dose-response curves for six ionic currents (ICaL, INaL, INa, Ito, IKs, and IK1) ([README.md](Hill_fitting/README.md)).
 
+IC50_mcmc_jobs.sh was designed to do training and validation data separately (by providing different input data files).
+
 ## Uncertainty propagation
 [AP_simulation/](AP_simulation/) contains code to propagate uncertainty in drug effects to action potential (AP) simulations. Results from [hERG_fitting/](hERG_fitting/) and [Hill_fitting/](Hill_fitting/) are used as model inputs ([README.md](AP_simulation/README.md)).
 
@@ -32,9 +34,22 @@ Adjust the code in Hill_fitting "IC50_mcmc_jobs.sh" to point at the correct file
 
 Steps:
 
-* In [Validation/Code/Hill_Fitting](Validation/Code/Hill_Fitting), execute (IC50_mcmc_jobs.sh). Make sure there is a [logfiles/](logfiles/) folder in that folder. A [results/](results/) and [figs/](figs/) folder will appears with results and figures.
-* In [Validation/Code/AP_simulation](Validation/Code/AP_simulation), execute (AP_uncertainty_jobs.sh). Adjust AP_uncertainty_jobs.sh to target the results folder you made in the first step.
-* In the [Validation/Code/AP_simulation](Validation/Code/AP_simulation) folder, use "Rscript combine_results.R -n 2000" to combine results and produce metrics.rds.
+* In [Validation/Hill_Fitting](Validation/Hill_Fitting), execute (IC50_mcmc_jobs.sh). Make sure there is a [logfiles/](logfiles/) folder in that folder. A [results/](results/) and [figs/](figs/) folder will appears with results and figures.
+* In [Validation/AP_simulation](Validation/AP_simulation), execute (AP_uncertainty_jobs.sh). Adjust AP_uncertainty_jobs.sh to target the results folder you made in the first step.
+* In the [Validation/AP_simulation](Validation/AP_simulation) folder, use "Rscript combine_results.R -n 2000" to combine results and produce metrics.rds.
+
+## An Important Proviso
+Every effort was made to "freeze" the CiPA code between the Training and Validation sets, but necessity required some changes. One change is in IC50_mcmc.R, which required changes to be able to handle noisy, high-throughput data. AP_simulation.R is unchanged from the October 2017 paper.
+
+## Paper Citations
+
+The "training" work was reported in the paper:
+
+Li, Z., Dutta, S., Sheng, J., Tran, P.N., Wu, W., Chang, K., Mdluli, T., Strauss, D.G. and Colatsky, T., 2017. Improving the in silico assessment of proarrhythmia risk by combining hERG (human ether-à-go-go-related gene) channel–drug binding kinetics and multichannel pharmacology. Circulation: Arrhythmia and Electrophysiology, 10(2), p.e004628.
+
+The "validation" work was reported in the paper:
+
+Li et al. Clinical Pharmacology and Therapeutics 2017. Accepted. In Press. More detailed citation forthcoming.
 
 ## DISCLAIMER
 This software and documentation were developed by the authors in their capacities as Oak Ridge Institute for Science and Education (ORISE) research fellows at the U.S. Food and Drug Administration (FDA).
