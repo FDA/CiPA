@@ -49,7 +49,7 @@ Li, Z., Dutta, S., Sheng, J., Tran, P.N., Wu, W., Chang, K., Mdluli, T., Strauss
 
 The "validation" work was reported in the paper:
 
-Li et al. Clinical Pharmacology and Therapeutics 2017. Accepted. In Press. More detailed citation forthcoming.
+Li et al. Clinical Pharmacology and Therapeutics 2018. Accepted. In Press. More detailed citation forthcoming.
 
 ## DISCLAIMER
 This software and documentation were developed by the authors in their capacities as Oak Ridge Institute for Science and Education (ORISE) research fellows at the U.S. Food and Drug Administration (FDA).
