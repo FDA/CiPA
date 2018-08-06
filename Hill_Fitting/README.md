@@ -1,6 +1,9 @@
 # Uncertainty characterization of dose-response curves
 This code performs uncertainty characterization of dose-response curves (the Hill equation) for ionic current block using a Bayesian inference approach.
 
+## Proviso
+This MCMC fitting code was intended to be "frozen", but in practice this was not possible due to the noisiness of high-throughput data. The MCMC fitting code was altered to be made more robust to experimental noise.
+
 ## Data format
 Patch clamp data should be stored in comma-separated value (CSV) format. Files should be stored in comma-separated value (CSV) format with the following headers:
 

@@ -1,6 +1,9 @@
 # Propagation of uncertainty in drug effects
 This code performs uncertainty propagation for the CiPA *in silico* model. Model inputs are the pharmacological parameters for the hERG/IKr Markov model ([README.md](../hERG_fitting/README.md)) and Hill equation parameters for drug block of other ionic currents ([README.md](../Hill_fitting/README.md)). These inputs are used to simulate action potentials (APs) with the optimized IKr-dynamic ORd model (Dutta *et al.* 2017). The primary model output considered here is the qNet metric for proarrhythmia risk described by Dutta *et al.* 2017.
 
+## Proviso
+This code was kept the same compared with our prior paper, except data for all 28 drugs are now provided.
+
 ## Running the code
 This code uses the following R packages: optparse (version 1.4.4), deSolve (version 1.14), ggplot2 (version 2.2.0), and rms (version 4.5-0).
 

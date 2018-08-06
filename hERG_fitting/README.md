@@ -1,6 +1,9 @@
 # Uncertainty characterization of drug-hERG kinetics
 This code performs uncertainty characterization for the pharmacological component of the human Ether-à-go-go-Related Gene (hERG) current model using the nonparametric bootstrap method.
 
+## Proviso
+This code is exactly the same as it was before from our previous paper, but now data for all 28 drugs are provided.
+
 ## hERG model
 The hERG Markov model includes a saturating drug binding component and a drug trapping component:
 
