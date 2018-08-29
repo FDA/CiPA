@@ -49,7 +49,7 @@ Li, Z., Dutta, S., Sheng, J., Tran, P.N., Wu, W., Chang, K., Mdluli, T., Strauss
 
 The "validation" work was reported in the paper:
 
-Li et al. Clinical Pharmacology and Therapeutics 2018. Accepted. In Press. More detailed citation forthcoming.
+Li, Z. , Ridder, B. J., Han, X. , Wu, W. W., Sheng, J. , Tran, P. N., Wu, M. , Randolph, A. , Johnstone, R. H., Mirams, G. R., Kuryshev, Y. , Kramer, J. , Wu, C. , Crumb, W. J. and Strauss, D. G. (2018), Assessment of an In Silico Mechanistic Model for Proarrhythmia Risk Prediction Under the CiPA Initiative. Clin. Pharmacol. Ther. doi:10.1002/cpt.1184
 
 ## DISCLAIMER
 This software and documentation were developed by the authors in their capacities as Oak Ridge Institute for Science and Education (ORISE) research fellows at the U.S. Food and Drug Administration (FDA).
