@@ -24,7 +24,7 @@ IC50_mcmc_jobs.sh was designed to do training and validation data separately (by
 [AP_simulation/](AP_simulation/) contains code to propagate uncertainty in drug effects to action potential (AP) simulations. Results from [hERG_fitting/](hERG_fitting/) and [Hill_fitting/](Hill_fitting/) are used as model inputs ([README.md](AP_simulation/README.md)).
 
 ## Work Specific to Validation Paper
-All files have been added to [Validation/](Validation/) for doing hERG_fitting on all 28 drugs (use the hERG_fitting code in the "Training" folder to do this). Hill_fitting contains four different data sets: 
+Use the hERG_fitting code in the "Training" folder to do hERG fitting on all 28 drugs. Hill_fitting contains four different data sets: 
 * manual training
 * manual validation
 * high-throughput training
@@ -34,12 +34,9 @@ Adjust the code in Hill_fitting "IC50_mcmc_jobs.sh" to point at the correct file
 
 Steps:
 
-* In [Validation/Hill_Fitting](Validation/Hill_Fitting), execute (IC50_mcmc_jobs.sh). Make sure there is a [logfiles/](logfiles/) folder in that folder. A [results/](results/) and [figs/](figs/) folder will appears with results and figures.
-* In [Validation/AP_simulation](Validation/AP_simulation), execute (AP_uncertainty_jobs.sh). Adjust AP_uncertainty_jobs.sh to target the results folder you made in the first step.
-* In the [Validation/AP_simulation](Validation/AP_simulation) folder, use "Rscript combine_results.R -n 2000" to combine results and produce metrics.rds.
-
-## An Important Proviso
-Every effort was made to "freeze" the CiPA code between the Training and Validation sets, but necessity required some changes. One change is in IC50_mcmc.R, which required changes to be able to handle noisy, high-throughput data. AP_simulation.R is unchanged from the October 2017 paper.
+* In [/Hill_Fitting](/Hill_Fitting), execute (IC50_mcmc_jobs.sh). Make sure there is a [logfiles/](logfiles/) folder in that folder. A [results/](results/) and [figs/](figs/) folder will appears with results and figures.
+* In [/AP_simulation](/AP_simulation), execute (AP_uncertainty_jobs.sh). Adjust AP_uncertainty_jobs.sh to target the results folder you made in the first step.
+* In the [/AP_simulation](/AP_simulation) folder, use "Rscript combine_results.R -n 2000" to combine results and produce metrics.rds.
 
 ## Paper Citations
 
