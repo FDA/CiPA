@@ -24,7 +24,7 @@ IC50_mcmc_jobs.sh was designed to do training and validation data separately (by
 [AP_simulation/](AP_simulation/) contains code to propagate uncertainty in drug effects to action potential (AP) simulations. Results from [hERG_fitting/](hERG_fitting/) and [Hill_fitting/](Hill_fitting/) are used as model inputs ([README.md](AP_simulation/README.md)).
 
 ## Work Specific to Validation Paper
-Use the hERG_fitting code in the "Training" folder to do hERG fitting on all 28 drugs. Hill_fitting contains four different data sets: 
+Use the hERG_fitting code to do hERG fitting on all 28 drugs. Hill_fitting contains four different data sets: 
 * manual training
 * manual validation
 * high-throughput training
