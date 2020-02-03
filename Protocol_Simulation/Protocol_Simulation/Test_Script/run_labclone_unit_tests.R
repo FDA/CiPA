@@ -1,0 +1,5 @@
+require(testthat)
+require(deSolve)
+dyn.load("../hERG_Model_C_Code/hergmod.dll")
+y <- sapply(list.files("../Code/",full.names = TRUE), source)
+test_dir("../Unit_Tests/testthat/",reporter = SummaryReporter$new(max_reports = Inf))
