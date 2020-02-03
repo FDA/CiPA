@@ -1,6 +1,0 @@
-Parameter	Low	Initial	High
-Kmax	1e-8	5	1e+8
-Ku	1e-9	1e-3	1
-n   0.5 1   2
-halfmax	0.001	0.15	1e+9
-Vhalf	-200	-8	-1
