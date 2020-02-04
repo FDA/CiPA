@@ -59,22 +59,23 @@ To compensate for this, the code is intended to start at 1.00, and marches down 
 
 The defaults can be used as-is to verify the code runs properly.
 
-# LabClone Simulation Code
-## LabClone Required Packages
+# Protocol_Simulation Simulation Code
+## Protocol_Simulation Required Packages
 This code uses the following R packages:
 ```
-NONE
-
+testthat
+deSolve
+cmaes
 ```
 
 The IKr-dynamic ORd model C code is provided in [models/](models/) and must be compiled:
 ```
-cd BHM_LabClone_for_GitHub/LabClone_for_K_Drive
+cd BHM_PS_2020
 R CMD SHLIB /Protocol_Simulation/Protocol_Simulation/hERG_Model_C_Code/hergmod.c
 ```
 
-## LabClone Unit Tests and testthat
-LabClone comes with a battery of unit tests for all of the component functions. Running the unit tests successfully is good proof everything is working as it should and repeatable results will be obtained.
+## Protocol_Simulation Unit Tests and testthat
+Protocol_Simulation comes with a battery of unit tests for all of the component functions. Running the unit tests successfully is good proof everything is working as it should and repeatable results will be obtained.
 To run all of the unit tests, install testthat:
 
 ```
@@ -91,8 +92,8 @@ This will run all of the ~250 unit tests. All greens means everything is working
 Also, the unit tests are the easiest and fastest way to understand how the code works, and how it ought to work.
 Those interested in expanding upon this code will likely find them very helpful.
 
-## Running LabClone simulations
-If all of the unit tests pass, you can run the LabClone simulations. To run them, use:
+## Running Protocol_Simulation simulations
+If all of the unit tests pass, you can run the Protocol_Simulation simulations. To run them, use:
 
 ```
 cd /Protocol_Simulation/Protocol_Simulation/Run_Script
@@ -111,7 +112,7 @@ Results and figures are automatically saved to [Protocol_Simulation/](/Protocol_
 
 The resulting CSV files will have the drug concentration in one column, and the block in another. This is repeated for all 2000 hERG parameters. For each drug, 2000 CSV files will be created.
 
-## How Parameters are Specified for the LabClone Simulations
+## How Parameters are Specified for the Protocol_Simulation Simulations
 The values specified in labclone_run_data.dat are:
 ```
 drug <drugname1>
@@ -137,7 +138,7 @@ parampath is static parameters that should not be changed.
 statepath is a .txt file showing the initial states for simulation. This probably should be left as-is.
 hERGpath is the path to the individual drug CSV files containing the 2000 hERG parameters.
 temperature is in Celsius.
-outputdir is where the output files will be written for the LabClone simulations.
+outputdir is where the output files will be written for the Protocol_Simulation simulations.
 voltagefunction is how the voltage protocol is specified. The most general choice is voltage_trueAP_program_list_mode, which uses an input CSV files of t and V (time and voltage) to specify any arbitrary voltage protocol.
 voltagefunctionparameters is a CSV file that specifies the voltage protocol.
 
