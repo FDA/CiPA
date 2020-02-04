@@ -66,6 +66,13 @@ This code uses the following R packages:
 testthat
 deSolve
 cmaes
+optparse
+deSolve
+cmaes
+FME
+rms
+ggplot2
+
 ```
 
 The IKr-dynamic ORd model C code is provided in [models/](models/) and must be compiled:
