@@ -59,7 +59,12 @@ To compensate for this, the code is intended to start at 1.00, and marches down 
 The defaults can be used as-is to verify the code runs properly.
 
 # Protocol Simulation Code
-The protocol simulation code is a modification and extension of our previous work in <put a reference here>. This code, for a given drug, cycles through all 2,000 parameter sets for the hERG Markov model discussed in <that reference>. 
+The protocol simulation code is a modification and extension of our previous work in:
+
+Li et al. J. Pharmacological and Toxicological Methods, 81, 2016, pp. 233-239, https://doi.org/10.1016/j.vascn.2016.05.005, http://www.sciencedirect.com/science/article/pii/S1056871916300454
+
+This code, for a given drug, cycles through all 2,000 parameter sets for the hERG Markov model discussed in the above reference. From the simulations of the hERG channel, dose-response curves of fractional block vs. drug concentration can be used to estimate the Hill coefficient and IC50 parameters for the Hill equation. Markov-chain Monte Carlo was used to quantify the uncertainty in these coefficients given the simulation output data.
+
 ## Protocol_Simulation Required Packages
 This code uses the following R packages:
 ```
