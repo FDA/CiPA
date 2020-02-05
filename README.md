@@ -1,3 +1,6 @@
+This branch contains code used for the manuscript “A Systematic Strategy for Estimating hERG Block Potency and Its Implications in A New Cardiac Safety Paradigm” (submitted).
+
+
 # Bayesian Hierarchical Model Code
 This code performs Markov-chain Monte Carlo to sample from the posterior distribution suggested by the data supplied by the different laboratory sites.
 
