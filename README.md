@@ -75,12 +75,15 @@ optparse
 deSolve
 cmaes
 FME
+coda
 rms
 ggplot2
 
 ```
 
-The IKr-dynamic ORd model C code is provided in [models/](models/) and must be compiled:
+The dynamic hERG model C code is provided in [models/](models/). This code is adapted from that used in the paper:
+Li et al. Circulation: Arrhythmia and Electrophysiology, Volume 10, Issue 2, 2017. 
+The code must be compiled prior to running the simulations:
 ```
 cd BHM_PS_2020
 R CMD SHLIB /Protocol_Simulation/Protocol_Simulation/hERG_Model_C_Code/hergmod.c
