@@ -42,7 +42,6 @@ exceeded_max_iterations_chain_output_folder ../Output/exceeded_max_iterations_mc
 top_level_prior_parameters ../Input/Gamma_Top_Level/Gamma_Top_Level.csv
 initial_jump 1.00
 ```
-
 drug is a drug name
 seed is an integer that specifies a random seed to use
 channel hERG should not be changed
@@ -59,7 +58,8 @@ To compensate for this, the code is intended to start at 1.00, and marches down 
 
 The defaults can be used as-is to verify the code runs properly.
 
-# Protocol_Simulation Simulation Code
+# Protocol Simulation Code
+The protocol simulation code is a modification and extension of our previous work in <put a reference here>. This code, for a given drug, cycles through all 2,000 parameter sets for the hERG Markov model discussed in <that reference>. 
 ## Protocol_Simulation Required Packages
 This code uses the following R packages:
 ```
