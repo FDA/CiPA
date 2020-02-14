@@ -1,0 +1,9 @@
+metric	nanion8rand_qNet
+AUC1	0.933 (0.867 - 1   )
+AUC2	1    (0.667 - 1   )
+Pairwise	0.938 (0.875 - 1   )
+LR1plus	3    (2.4  - 3   )
+LR1minus	1.5e-06 (1.5e-06 - 0.3 )
+LR2plus	6    (3    - 6   )
+LR2minus	1.2e-06 (1.2e-06 - 0.6 )
+Mean_error	0.322 (0.315 - 0.329)
