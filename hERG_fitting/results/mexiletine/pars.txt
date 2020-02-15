@@ -1,5 +1,0 @@
-Kmax 15
-Ku 0.07114
-n 1.139
-halfmax 723000
-Vhalf -87.51
