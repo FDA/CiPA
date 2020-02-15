@@ -41,4 +41,4 @@ This software and documentation were developed by the authors in their capacitie
 FDA assumes no responsibility whatsoever for use by other parties of the Software, its source code, documentation or compiled executables, and makes no guarantees, expressed or implied, about its quality, reliability, or any other characteristic.  Further, FDA makes no representations that the use of the Software will not infringe any patent or proprietary rights of third parties.   The use of this code in no way implies endorsement by the FDA or confers any advantage in regulatory decisions.
 
 ## References
-* Li, Zhihua, Bradley J. Ridder, Xiaomei Han, Wendy W. Wu, Jiansong Sheng, Phu N. Tran, Min Wu et al. "Assessment of an in silico mechanistic model for proarrhythmia risk prediction under the ci pa initiative." Clinical Pharmacology & Therapeutics 105, no. 2 (2019): 466-475. https://doi.org/10.1002/cpt.1184
+*Xiaomei Han, Mohammadreza Samieegohar, Bradley J. Ridder, Wendy W., Zhihua Li*  et al. "A Lab-specific Calibration and Validation Strategy for Implementing Proarrhythmia Risk Prediction Models: A Case Study of CiPA". (submitted)
