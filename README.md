@@ -41,4 +41,4 @@ This software and documentation were developed by the authors in their capacitie
 FDA assumes no responsibility whatsoever for use by other parties of the Software, its source code, documentation or compiled executables, and makes no guarantees, expressed or implied, about its quality, reliability, or any other characteristic.  Further, FDA makes no representations that the use of the Software will not infringe any patent or proprietary rights of third parties.   The use of this code in no way implies endorsement by the FDA or confers any advantage in regulatory decisions.
 
 ## References
-*Xiaomei Han, Mohammadreza Samieegohar, Bradley J. Ridder, Wendy W., Zhihua Li*  et al. "A Lab-specific Calibration and Validation Strategy for Implementing Proarrhythmia Risk Prediction Models: A Case Study of CiPA". (submitted)
+*Han, X., Samieegohar, M., Ridder, B., J., Wu, W. W,. Randolph, A., Tran, P., Li, Z., et al. "A Lab-specific Calibration and Validation Strategy for Implementing Proarrhythmia Risk Prediction Models: A Case Study of CiPA". (submitted)
