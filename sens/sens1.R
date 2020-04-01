@@ -21,16 +21,15 @@ fitmethod<-"lrm"
 
 colorvec<-c("red","dark green","blue","black","cyan","purple","brown")
 colordf<-data.frame(
-   drug = c("dofetilide","bepridil","quinidine","sotalol","ibutilide", "azimilide", "vandetanib",
-             "cisapride","terfenadine","ondansetron","chlorpromazine","clarithromycin","risperidone","astemizole", "pimozide","droperidol","clozapine",
+   drug = c("dofetilide","bepridil","quinidine","sotalol","ibutilide", "azimilide", "disopyramide", "vandetanib",
+             "cisapride","terfenadine","ondansetron","chlorpromazine","clarithromycin","risperidone","domperidone","astemizole", "pimozide","droperidol","clozapine",
              "ranolazine","mexiletine","diltiazem","verapamil","metoprolol","loratadine","tamoxifen","nifedipine","nitrendipine"),
-   classidx=c(rep(2,7),rep(1,10),rep(0,9)),
-   coloridx=c(rep(1,7),rep(3,10),rep(2,9)),
-   isTraining=c(1,1,1,1,0,0,0,
-                1,1,1,1,0,0,0,0,0,0,
+   classidx=c(rep(2,8),rep(1,11),rep(0,9)),
+   coloridx=c(rep(1,8),rep(3,11),rep(2,9)),
+   isTraining=c(1,1,1,1,0,0,0,0,
+                1,1,1,1,0,0,0,0,0,0,0,
                 1,1,1,1,0,0,0,0,0)
  )
-
 
 system(paste0("mkdir -p ",outdir))
 figdir<-sub("results","figs",outdir)
