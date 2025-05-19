@@ -128,6 +128,14 @@ opt_list<-list()
 col_list<-list()
 if(desiredchannels == "all")
      desiredchannels <- channels
+     # Set desired column order
+     desired_order <- c("ICaL_IC50", "ICaL_h",
+                   "IK1_IC50", "IK1_h",
+                   "IKs_IC50", "IKs_h",
+                   "INa_IC50", "INa_h",
+                   "INaL_IC50", "INaL_h",
+                   "Ito_IC50", "Ito_h",
+                   "hERG_IC50", "hERG_h")
 for(channel in desiredchannels){
     tstr<-sprintf("%s, %s channel",drug,channel)
     print(tstr)
@@ -260,11 +268,16 @@ for(channel in desiredchannels){
 }# for channel
 
 optdf<-do.call(cbind,opt_list)
+# Reorder columns
+optdf <- optdf[, desired_order, drop=FALSE]
 print(sprintf("Saving optimal IC50s for %s",drug))
 print(head(optdf))
 write.csv(optdf, paste0(drugdir,"IC50_optimal.csv"), row.names=F, quote=F)
 
+
 drugdf<-do.call(cbind,col_list)
+# Reorder columns
+drugdf <- drugdf[, desired_order, drop=FALSE]
 print(sprintf("Saving samples for %s",drug))
 print(head(drugdf))
 write.csv(drugdf, paste0(drugdir,"IC50_samples.csv"), row.names=F, quote=F)

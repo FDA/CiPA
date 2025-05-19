@@ -15,6 +15,7 @@
 
 #--- specify command line arguments
 library(optparse)
+library(boot)
 
 parser<-OptionParser()
 parser<-add_option(parser, c("-d", "--drug"), default="dofetilide,cisapride,bepridil,verapamil,terfenadine,ranolazine,sotalol,mexiletine,quinidine,ondansetron,diltiazem,chlorpromazine", help="Drug name(s), comma separated [default is 12 CiPA training drugs]")
@@ -22,18 +23,15 @@ parser<-add_option(parser, c("-a", "--alpha"), default=0.05, help="Significance 
 
 args<-parse_args(parser)
 
-#--- load libraries
-library(boot)
-print(sessionInfo())
+# Check required argument
+if(is.null(args$drug)) stop("Missing drug argument!")
 
 #--- process arguments
-drugstr<-gsub(" ","",args$drug)
-drugnames<-strsplit(drugstr, ",")[[1]]
+drug<-args$drug
 alpha<-args$alpha
 
 sigdigits<-4 # round parameters to significant digits
 
-for(drug in drugnames){
     #--- read in bootstraps
     outdir<-sprintf("results/%s/",drug)
     boot.out<-readRDS(paste0(outdir,"boot_out.rds"))
@@ -72,8 +70,11 @@ for(drug in drugnames){
     parStart[["slope"]]<-signif(parStart[["Kmax"]]/parStart[["halfmax"]], digits=sigdigits)
     df$slope<-signif(df$Kmax/df$halfmax, digits=sigdigits)
 
+    #--- remove rows with NA values
+    df_clean <- df[complete.cases(df), ]
+
     #--- save samples to file
-    write.csv(df, paste0(outdir,"boot_pars.csv"), row.names=F, quote=F)
+    write.csv(df_clean, paste0(outdir,"boot_pars.csv"), row.names=F, quote=F)
 
     #--- construct boot object
     boot.out$t0<-parStart
@@ -104,4 +105,3 @@ for(drug in drugnames){
     }
     dev.off()
     write.csv(cidf, sprintf("%s/boot_CI%g.csv",outdir,100*(1-alpha)), row.names=F, quote=F)
-}# for drug

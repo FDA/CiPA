@@ -58,7 +58,7 @@ if(boot_num>0){
 print(idx)
 
 #--- get data
-fracdata<-get_boot_data(paste0("data/",drug,".csv"), idx)
+fracdata<-get_boot_data(datafile, idx)
 concvec<-names(fracdata) # note these are characters!
 nsweeps<-max(sapply(fracdata, length))
 if(nbeats!=nsweeps) stop(sprintf("Simulations have %d beats, but experiments have %d sweeps!",nbeats,nsweeps))

@@ -17,31 +17,37 @@ proc_start<-proc.time()
 options(warn=1)
 
 library(optparse)
+library(cmaes)
+library(parallel)
+library(deSolve)
 
 isWindows<-Sys.info()[["sysname"]]=="Windows"
 
 #--- specify command line arguments
 parser<-OptionParser()
 parser<-add_option(parser, c("-d", "--drug"), type="character", help="Drug name [required]")
+parser<-add_option(parser, c("-f", "--file"), type="character", help="Path to CSV file [required]")
 parser<-add_option(parser, c("-i", "--sample"), default="0", help="Bootstrap sample number, range, and/or list of samples to be fitted [default 0 fits to original data]")
 parser<-add_option(parser, c("-s", "--seed"), default=100, type="integer", help="Random seed [default 100]")
 parser<-add_option(parser, c("-c", "--cores"), default=1, type="integer", help="Number of cores to use during fitting [default 1]")
-parser<-add_option(parser, c("-f", "--forking"), default=FALSE, action="store_true", help="Flag to turn on forking for parallelization (not supported in Windows)")
 parser<-add_option(parser, c("-l", "--lambda"), type="integer", help="Population size to use for CMA-ES [default 4+floor(3*log(N))]")
-parser<-add_option(parser, c("-m", "--maxiter"), type="integer", help="Maximum number of generations for CMA-ES [default 100*N^2]")
+parser<-add_option(parser, c("-m", "--maxiter"), type="integer", help="Maximum number of generations for CMA-ES [default 100*N^2]a")
+parser<-add_option(parser, c("-p", "--forking"), default=FALSE, action="store_true", help="Flag to turn on forking for parallelization (not supported in Windows)")
 parser<-add_option(parser, c("-t", "--tol"), type="double", help="Stopping tolerance for CMA-ES [default 0.5e-12]")
 
 args<-parse_args(parser)
 
 #--- load libraries
-library(cmaes)
-library(parallel)
-library(deSolve)
 print(sessionInfo())
 
 #--- required argument
 if(is.null(args$drug)) stop("Missing drug argument!")
+if(is.null(args$file)) stop("Missing file path argument!")
 drug<-args$drug
+datafile<-args$file
+
+# Verify file exists
+if(!file.exists(datafile)) stop(sprintf("File %s does not exist!", datafile))
 
 #--- parse bootstrap list, ranges
 bootstr<-args$sample
@@ -96,8 +102,7 @@ if(cores>1){
     }else{
         cl<-makeCluster(cores)
         invisible(clusterEvalQ(cl,library(deSolve)))
-        clusterExport(cl,c("setupfile","drug","isWindows"))
-
+        clusterExport(cl,c("setupfile","drug","datafile","isWindows")) # Added datafile
         lapplyfun<-function(X, FUN) clusterApply(cl, X, FUN)
         usesocket<-TRUE
     }
@@ -164,6 +169,11 @@ for(boot_num in boot_range){
     pars<-signif(decode_pars(res$par), digits=4)
     names(pars)<-pnames
     write.table(pars, file=paste0(outdir,"pars.txt"), row.names=T, col.names=F, quote=F)
+
+    # made by Marcell to make the optimal have the same format as hERG samples.
+    write(paste(names(pars), collapse=","), file=paste0(outdir, "pars_optimal.csv"))
+    write(paste(pars, collapse=","), file=paste0(outdir, "pars_optimal.txt"), append=TRUE)
+
 
 }# for boot_num
 

@@ -9,28 +9,26 @@ isWindows<-Sys.info()[["sysname"]]=="Windows"
 #--- specify command line arguments
 parser<-OptionParser()
 parser<-add_option(parser, c("-d", "--drug"), default="all", type="character", help="Drug name [required]")
+parser<-add_option(parser, c("-f", "--file"), default=NULL, type="character", help="Path to CSV file [required]")
 parser<-add_option(parser, c("-p", "--pickedtime"), default=100, help="averaging the last p ms of the 10th sweep as the step current")
 
 args<-parse_args(parser)
 
-#print(sessionInfo())
-
 #--- required argument
 if(is.null(args$drug)) stop("Missing drug argument!")
-drug<-args$drug
-drugvec<- c("dofetilide","bepridil","quinidine","sotalol","ibutilide", "azimilide", "disopyramide", "vandetanib",
-             "cisapride","terfenadine","ondansetron","chlorpromazine","clarithromycin","risperidone","domperidone","astemizole", "pimozide","droperidol","clozapine",
-             "ranolazine","mexiletine","diltiazem","verapamil","metoprolol","loratadine","tamoxifen","nifedipine","nitrendipine")
+if(is.null(args$file)) stop("Missing file path argument!")
 
-drugvec<-drug
+drug<-args$drug
+drugfile<-args$file
+
+# Verify file exists
+if(!file.exists(drugfile)) stop(sprintf("File %s does not exist!", drugfile))
+
 #--- optional argument
 pickedtime<- args$pickedtime
 #pickedtime<- 100
 
-alldf<-data.frame(drug=NA, conc=NA, units=NA, channel=NA, block=NA,exp=NA)
-for(drug in drugvec){
 
-drugfile<- paste0("data/",drug,".csv")
 drugdf<-read.delim(drugfile,sep=",")
 #only the last sweep is needed
 drugdf<- drugdf[drugdf$sweep == 10,]
@@ -49,9 +47,6 @@ extracteddf<-as.data.frame(extracteddf)
 colnames(extracteddf)<-c("exp","conc","block")
 extracteddf$block <- 100*(1-extracteddf$block)
 extracteddf$channel<- "hERG";  extracteddf$units<- "nM"; extracteddf$drug<- drug; 
-alldf<-rbind(alldf,extracteddf)
-}#drug vec
 
-alldf<-alldf[-1,]
+alldf<-extracteddf
 write.table(alldf, "drug_block.csv", sep=",",quote=F,col.names=T,row.names=F)
-

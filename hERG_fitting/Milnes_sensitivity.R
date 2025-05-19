@@ -15,23 +15,25 @@ proc_start<-proc.time()
 
 #--- specify command line arguments
 library(optparse)
-
-parser<-OptionParser()
-parser<-add_option(parser, c("-d", "--drug"), default="dofetilide,cisapride,bepridil,verapamil,terfenadine,ranolazine,sotalol,mexiletine,quinidine,ondansetron,diltiazem,chlorpromazine", help="Drug name(s), comma separated [default is 12 CiPA training drugs]")
-
-args<-parse_args(parser)
-
-#--- load libraries
 library(deSolve)
 library(FME)
 library(ggplot2)
-print(sessionInfo())
+
+parser<-OptionParser()
+parser<-add_option(parser, c("-d", "--drug"), default=NULL, type="character", help="Drug name [required]")
+parser<-add_option(parser, c("-f", "--file"), default=NULL, type="character", help="Path to CSV file [required]")
+
+args<-parse_args(parser)
+
+# Check required arguments
+if(is.null(args$drug)) stop("Missing drug argument!")
+if(is.null(args$file)) stop("Missing file path argument!")
+
+drug<-args$drug
+datafile<-args$file
+
 
 isWindows<-Sys.info()[["sysname"]]=="Windows"
-
-#--- process arguments
-drugstr<-gsub(" ","",args$drug)
-drugnames<-strsplit(drugstr, ",")[[1]]
 
 #--- function for running Milnes simulation
 solveMilnes<-function(fitpars, conc, times=peaktimes){
@@ -55,12 +57,11 @@ solveMilnes<-function(fitpars, conc, times=peaktimes){
     outdf
 } # solveMilnes
 
-for(drug in drugnames){
     #--- setupfile used in fitting
-    print(drug)
     boot_num<-0
     setupfile<-"setup_hERG_fitting.R"
     source(setupfile)
+
     conc_vec<-as.numeric(concvec) # concvec from setupfile is characters
     print(conc_vec)
 
@@ -150,6 +151,6 @@ for(drug in drugnames){
     p<-p+theme(plot.title=element_text(hjust=0.5), legend.position=c(0.875,0.15), 
             panel.grid.major=element_blank(), panel.grid.minor=element_blank())
     ggsave(paste0("figs/",drug,"_sensRange.png"), p, width=8, height=4)
-}# for drug
+
 
 print(proc.time()-proc_start)

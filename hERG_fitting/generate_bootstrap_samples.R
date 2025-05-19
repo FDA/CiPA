@@ -14,40 +14,40 @@
 #               line option "-h".
 #
 
+
 #--- specify command line arguments
 library(optparse)
+library(boot)
+library(parallel)
 
 parser<-OptionParser()
-parser<-add_option(parser, c("-d", "--drug"), default="dofetilide,cisapride,bepridil,verapamil,terfenadine,ranolazine,sotalol,mexiletine,quinidine,ondansetron,diltiazem,chlorpromazine", help="Drug name(s), comma separated [default is 12 CiPA training drugs]")
+parser<-add_option(parser, c("-d", "--drug"), default="quinidine", help="Drug name")
+parser<-add_option(parser, c("-f", "--file"), default=NULL, type="character", help="Path to CSV file [required]")
 parser<-add_option(parser, c("-n", "--nboots"), default=2000, type="integer", help="Number of bootstrap samples")
 parser<-add_option(parser, c("-s", "--seed"), default=100, type="integer", help="Random seed [default 100]")
 
 args<-parse_args(parser)
-
-#--- load libraries
-library(boot)
-library(parallel)
 print(sessionInfo())
 
+# Check required arguments
+if(is.null(args$drug)) stop("Missing drug argument!")
+if(is.null(args$file)) stop("Missing file path argument!")
+
 #--- process arguments
-drugstr<-gsub(" ","",args$drug)
-drugnames<-strsplit(drugstr, ",")[[1]]
+drug<-args$drug
+datafile<-args$file
 nboots<-args$nboots
 seednum<-args$seed
+
+# Verify file exists
+if(!file.exists(datafile)) stop(sprintf("File %s does not exist!", datafile))
 
 #--- sample with replacement using boot package
 set.seed(seednum, kind="L'Ecuyer-CMRG")
 s<-.Random.seed
-for(tid in seq_along(drugnames)){
-    drug<-drugnames[tid]
-    print(drug)
-
-    # set random seed
-    if(tid>1) s<-nextRNGStream(s)
-    .Random.seed<-s
 
     # read in Milnes cell data
-    datadf<-read.csv(paste0("data/",drug,".csv"))
+    datadf<-read.csv(datafile)
     datadf<-datadf[with(datadf,order(conc,exp,sweep,time)),]
 
     # data frame of experiments
@@ -60,4 +60,3 @@ for(tid in seq_along(drugnames)){
     outdir<-sprintf("results/%s/",drug)
     system(paste0("mkdir -p ",outdir))
     saveRDS(boot.out,paste0(outdir,"boot_out.rds"))
-}# for tid
