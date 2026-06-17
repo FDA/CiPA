@@ -1,0 +1,9 @@
+metric	dataset	qNet
+AUC1	nanion8rand	0.933 (0.867 - 1   )
+AUC2	nanion8rand	1    (0.667 - 1   )
+Pairwise Correct Rate	nanion8rand	0.938 (0.875 - 1   )
+LR+ of Threshold 1	nanion8rand	3    (2.4  - 3   )
+LR- of Threshold 1	nanion8rand	1.5e-06 (1.5e-06 - 0.3 )
+LR+ of Threshold 2	nanion8rand	6    (3    - 6   )
+LR- of Threshold 2	nanion8rand	1.2e-06 (1.2e-06 - 0.6 )
+Mean Classification Error	nanion8rand	0.322 (0.315 - 0.329)
